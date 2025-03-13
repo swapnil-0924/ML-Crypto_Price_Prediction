@@ -1,0 +1,229 @@
+/* Base Variables */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --animation-duration: 0.3s;
+    --sidebar-width: 280px;
+    --font-heading: 'Poppins', sans-serif;
+}
+
+/* Base Styles */
+body {
+    background: #f8f9fa;
+    min-height: 100vh;
+    font-family: var(--font-heading);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Particles Background */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Glassmorphism Effect */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+    transition: all var(--animation-duration) ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientFlow 8s ease infinite;
+    background-size: 200% auto;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Sidebar Styles */
+#sidebar {
+    background: var(--glass-bg);
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.2);
+    transition: all var(--animation-duration) ease;
+    z-index: 1000;
+}
+
+#sidebar .sidebar-header {
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar .nav-link {
+    color: #2c3e50;
+    padding: 15px 25px;
+    margin: 8px 15px;
+    border-radius: 8px;
+    transition: all var(--animation-duration) ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+#sidebar .nav-link.active {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Content Area */
+#content {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+    transition: all var(--animation-duration) ease;
+}
+
+/* Prediction Cards */
+.prediction-card {
+    padding: 2.5rem;
+    margin: 2rem auto;
+}
+
+.icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.prediction-icon {
+    color: white;
+    font-size: 2rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group-text {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Form Validation Feedback */
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875em;
+}
+
+/* Metrics Section */
+.metrics-section {
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.metric-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.metric-box {
+    padding: 2rem;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    transition: all var(--animation-duration) ease;
+}
+
+.metric-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Chart Containers */
+.chart-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+    
+    #content {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .prediction-card {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .icon-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .prediction-icon {
+        font-size: 1.5rem;
+    }
+
+    .chart-container {
+        height: 300px; /* Adjust as needed */
+    }
+}
+.team-img {
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    object-fit: cover; /* Ensures the image scales nicely */
+    border-radius: 50%; /* Optional: makes it circular */
+}
