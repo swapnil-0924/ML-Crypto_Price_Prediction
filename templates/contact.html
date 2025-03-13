@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% set active_page = "contact" %}
+
+{% block content %}
+<div class="animate__animated animate__fadeIn">
+    <div class="prediction-card glass-card">
+        <div class="text-center mb-5">
+            <div class="icon-container mb-4">
+                <i class="fas fa-envelope prediction-icon"></i>
+            </div>
+            <h1 class="gradient-text display-4 fw-bold mb-3">Contact Us</h1>
+            <p class="lead text-muted">We'd love to hear from you!</p>
+        </div>
+
+        <div class="contact-form">
+            <form class="glass-card p-4">
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Name</label>
+                    <input type="text" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Message</label>
+                    <textarea class="form-control" rows="5" placeholder="Your message..." required></textarea>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i>
+                        Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

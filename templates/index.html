@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% set active_page = "home" %}
+
+{% block content %}
+<div class="row animate__animated animate__fadeIn">
+    <div class="col-lg-8 col-xl-6 mx-auto">
+        <div class="prediction-card glass-card">
+            <div class="text-center mb-5">
+                <div class="icon-container mb-4">
+                    <i class="fas fa-chart-line prediction-icon"></i>
+                </div>
+                <h1 class="gradient-text display-4 fw-bold mb-3">Crypto Price Prediction</h1>
+                <p class="lead text-muted">cryptocurrency price forecasting</p>
+            </div>
+            
+            <form action="/predict" method="post" class="needs-validation" novalidate>
+                <div class="mb-4 form-group">
+                    <label class="form-label fw-bold">Cryptocurrency Ticker</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text"><i class="fas fa-coins"></i></span>
+                        <input type="text" class="form-control" 
+                               name="ticker" placeholder="BTC-USD" required
+                               pattern="[A-Z]{3,4}-[A-Z]{2,3}">
+                        <div class="invalid-feedback">
+                            Please enter a valid ticker (e.g., BTC-USD)
+                        </div>
+                    </div>
+                    <small class="form-text text-muted">Enter any valid trading pair</small>
+                </div>
+                
+                <div class="mb-4 form-group">
+                    <label class="form-label fw-bold">Prediction Window</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        <input type="number" class="form-control" 
+                               name="days" min="1" max="365" value="30" required>
+                        <span class="input-group-text">days</span>
+                        <div class="invalid-feedback">
+                            Please enter a number between 1 and 365
+                        </div>
+                    </div>
+                    <small class="form-text text-muted">Choose prediction duration (1-365 days)</small>
+                </div>
+                
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-primary btn-lg prediction-btn">
+                        <i class="fas fa-chart-line me-2"></i>
+                        Generate Prediction
+                    </button>
+                </div>
+            </form>
+            
+            <div class="mt-5 text-center">
+                <h5 class="mb-3">Popular Cryptocurrencies</h5>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="BTC-USD">BTC</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="ETH-USD">ETH</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="BNB-USD">BNB</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="ADA-USD">ADA</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="DOGE-USD">DOGE</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="XRP-USD">XRP</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="SOL-USD">SOL</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="DOT-USD">DOT</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="LTC-USD">LTC</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="LINK-USD">LINK</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="MATIC-USD">MATIC</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="SHIB-USD">SHIB</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="AVAX-USD">AVAX</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="UNI-USD">UNI</button>
+                    <button class="btn btn-outline-primary btn-sm ticker-btn" data-ticker="XLM-USD">XLM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Ticker button functionality
+document.querySelectorAll('.ticker-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const tickerInput = document.querySelector('input[name="ticker"]');
+        tickerInput.value = this.dataset.ticker;
+        tickerInput.dispatchEvent(new Event('input'));
+    });
+});
+
+// Form validation
+(() => {
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% set active_page = "home" %}
+
+{% block content %}
+<div class="animate__animated animate__fadeIn">
+    <div class="prediction-card glass-card text-center">
+        <div class="icon-container mb-4">
+            <i class="fas fa-exclamation-triangle prediction-icon"></i>
+        </div>
+        <h1 class="gradient-text display-4 fw-bold mb-3">Oops! Something Went Wrong</h1>
+        <div class="alert alert-danger glass-card p-4 mb-4">
+            <h4 class="alert-heading">Error Details</h4>
+            <p class="mb-0">{{ message }}</p>
+        </div>
+        <a href="/" class="btn btn-primary btn-lg">
+            <i class="fas fa-arrow-left me-2"></i>
+            Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

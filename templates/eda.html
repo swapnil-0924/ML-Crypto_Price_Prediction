@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% set active_page = "eda" %}
+
+{% block content %}
+<div class="animate__animated animate__fadeIn">
+    <div class="prediction-card glass-card">
+        <div class="text-center mb-5">
+            <div class="icon-container mb-4">
+                <i class="fas fa-chart-line prediction-icon"></i>
+            </div>
+            <h1 class="gradient-text display-4 fw-bold mb-3">Exploratory Data Analysis</h1>
+            <p class="lead text-muted">Detailed analysis of {{ ticker }} data</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <div class="chart-container glass-card p-4">
+                    <h4 class="chart-title mb-4">Price Trend</h4>
+                    {{ price_trend|safe }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="chart-container glass-card p-4">
+                    <h4 class="chart-title mb-4">Volatility Analysis</h4>
+                    {{ volatility|safe }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="chart-container glass-card p-4">
+                    <h4 class="chart-title mb-4">Correlation Heatmap</h4>
+                    {{ correlation|safe }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="chart-container glass-card p-4">
+                    <h4 class="chart-title mb-4">Returns Distribution</h4>
+                    {{ returns_dist|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}  

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% set active_page = "home" %}
+
+{% block content %}
+<div class="animate__animated animate__fadeIn">
+    <div class="prediction-card glass-card">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <div class="icon-container mb-4">
+                <i class="fas fa-chart-bar prediction-icon"></i>
+            </div>
+            <h1 class="gradient-text display-5 fw-bold">{{ ticker }} Price Forecast</h1>
+            <p class="lead text-muted">Next {{ days }} Days Prediction</p>
+        </div>
+
+        <!-- Metrics Section -->
+        <div class="metrics-section mb-5">
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="chart-container glass-card p-3">
+                        {{ metrics_html|safe }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="metric-grid">
+                        <div class="metric-box bg-primary">
+                            <i class="fas fa-crosshairs metric-icon"></i>
+                            <span class="metric-value">{{ "%.2f"|format(metrics.rmse) }}</span>
+                            <span class="metric-label">RMSE</span>
+                        </div>
+                        <div class="metric-box bg-success">
+                            <i class="fas fa-ruler metric-icon"></i>
+                            <span class="metric-value">{{ "%.2f"|format(metrics.mae) }}</span>
+                            <span class="metric-label">MAE</span>
+                        </div>
+                        <div class="metric-box bg-warning">
+                            <i class="fas fa-percent metric-icon"></i>
+                            <span class="metric-value">{{ "%.1f"|format(metrics.mape) }}%</span>
+                            <span class="metric-label">MAPE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="row g-4 mb-5">
+                <div class="col-12">
+                    <div class="chart-container glass-card p-4">
+                        <h4 class="chart-title mb-4">Price Forecast with Confidence Intervals</h4>
+                        {{ plot_html|safe }}
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <div class="chart-container glass-card p-4">
+                        <h4 class="chart-title mb-4">Historical Price Analysis</h4>
+                        {{ candle_html|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predictions Table -->
+        <div class="predictions-section">
+            <div class="glass-card p-4">
+                <h4 class="mb-4">Detailed Predictions (Next {{ days }} Days)</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Date</th>
+                                <th>Predicted Price (USD)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for prediction in predictions %}
+                            <tr>
+                                <td>{{ prediction[0].strftime('%Y-%m-%d') }}</td>  <!-- Date -->
+                                <td>${{ "%.2f"|format(prediction[1]) }}</td>  <!-- Predicted Price -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="text-center mt-5">
+            <a href="/" class="btn btn-primary btn-lg prediction-btn">
+                <i class="fas fa-arrow-left me-2"></i>
+                New Prediction
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Chart resizing
+    window.dispatchEvent(new Event('resize'));
+    
+    // Add tooltips
+    $('[data-bs-toggle="tooltip"]').tooltip();
+    
+    // Metric box hover effects
+    $('.metric-box').hover(
+        function() {
+            $(this).css('transform', 'scale(1.05)');
+        },
+        function() {
+            $(this).css('transform', 'scale(1)');
+        }
+    );
+});
+</script>
+{% endblock %}
