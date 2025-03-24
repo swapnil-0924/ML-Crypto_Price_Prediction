@@ -174,12 +174,6 @@ Contributions are welcome! To contribute:
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
-
 ## 📧 Contact
 
 For questions or support, open an issue or contact **[swapnilajmera2399@gmail.com](mailto:swapnilajmera2399@gmail.com)**.
