@@ -16,6 +16,7 @@ The **ML Crypto Price Prediction** project is a Flask-based web application that
 - **Data Preprocessing**: Normalizes and scales data with `scikit-learn`.
 - **Error Metrics**: Evaluates performance using RMSE and MAE.
 - **User-Friendly Interface**: Simple and responsive UI for easy access.
+- **Live Demo**: [Check out the live project here](https://cryptopriceprediction.onrender.com).
 
 ---
 
@@ -181,5 +182,11 @@ This project is licensed under the **MIT License**.
 
 ## 📧 Contact
 
-For questions or support, open an issue or contact **[swapnilajmera2399@gmail.com](mailto\:swapnilajmera2399@gmail.com)**.
+For questions or support, open an issue or contact **[swapnilajmera2399@gmail.com](mailto:swapnilajmera2399@gmail.com)**.
+
+---
+
+## 🌟 Live Demo
+
+Check out the live project: [Crypto Price Prediction](https://cryptopriceprediction.onrender.com)
 
